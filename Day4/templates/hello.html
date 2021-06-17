@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+Hello Page{% endblock %}
+{% block content %}
+{% if name %}
+<h1>Welcome to the club, <span style="text-transform: uppercase;">{{ username }}</span> !</h1>
+{% else %}
+<h1>Woiiiii hellooooo!</h1>
+{% endif %}
+{% endblock %}
