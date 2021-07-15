@@ -1,0 +1,18 @@
+{% extends 'checkin/base.html' %}
+
+{% block content %}
+<div class="container pt-4" style="height: 800px;">
+    <h3 class="text-white">
+        Write COVID-19 Update
+    </h3>
+    <form method="POST" class="col-12 col-md-6 no-padding pr-3 pr-md-0">
+        {% csrf_token %}
+        <fieldset class="form-group text-white">
+            {{ form.as_p }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Publish</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

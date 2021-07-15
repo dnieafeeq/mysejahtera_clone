@@ -1,0 +1,52 @@
+{% extends 'checkin/base.html' %} {% block content%}
+
+<div class="container">
+    <h1 class="text-primary">My Health Information</h1>
+    <div class="row my-4">
+        <div class="col-auto">
+            <a href="{% url 'vaccineregister'%}" class="btn btn-primary">Update Vaccine Register</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-control-label">Name<span class="float-right">:</span></div>
+                        </div>
+                        <div class="col-6">
+                            <p>{{user.vaccine.name}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-control-label">Age<span class="float-right">:</span></div>
+                        </div>
+                        <div class="col-6">
+                            <p>{{user.vaccine.age}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-control-label">State<span class="float-right">:</span></div>
+                        </div>
+                        <div class="col-6">
+                            <p>{{user.vaccine.state}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-control-label">Vaccine Date<span class="float-right">:</span></div>
+                        </div>
+                        <div class="col-6">
+                            <p>{{user.vaccine.date}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

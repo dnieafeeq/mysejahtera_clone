@@ -1,0 +1,78 @@
+{%extends 'checkin/base.html'%}
+{% block title %} Home / MySejahtera CheckIns {% endblock %}
+{%block content%}
+<div class="container">
+    <h1 class="text-primary">Welcome to MySejahtera CheckIns</h1>
+    <div class="row my-4">
+        <div class="col-auto">
+            <a class="btn btn-primary" href="{% url 'location' %}">Check-In</a>
+        </div>
+    </div>
+    <div class="row">
+
+
+        <div class="col-md-8">
+
+            {% if user.username == "admin" %}
+            <div class="jumbotron p-3">
+                <h3>Hello, {{user.username}}</h3>
+                <p class="lead">Any Update on Covid-19 cases?
+                </p>
+                <hr class="my-4">
+
+                <div style="margin-left: auto; margin-right:auto">
+                    <a class="btn btn-sm btn-primary mb-4 mr-3 " href="{% url 'create' %}">
+                        New post
+                    </a>
+                </div>
+
+            </div>
+            {% endif %}
+
+            {% for post in posts %}
+
+            <div class="card mb-3">
+                <div class="card-header p-3">
+                    <h5> Covid-19 Update</h5>
+                    <p>{{post.date_posted}} - {{post.author}}</p>
+                </div>
+                <div class="card-body">
+                    <p>{{post.text}}</p>
+                    <!-- <p class="card-text">{{post.text}}</p> -->
+
+                    {% if user.username == 'admin' %}
+                    <a class="btn btn-sm btn-info ml-2" style="font-size: 14px"
+                        href="{% url 'post-update' post.id %}">Update</a>
+                    <a class="btn btn-sm btn-danger ml-2" style="font-size: 14px"
+                        href="{% url 'post-delete' post.id %}">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h4> Location History</h4>
+                    <!-- <p>{{post.date_posted}}</p> -->
+                    <a href="{% url 'location' %}">
+                        Add New Location
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% for loc in location %}
+                    <!-- <h5 class="card-title">{{post.text}}</h5> -->
+                    <p>{{loc.city }} - {{loc.author }} </p>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{%endblock content%}

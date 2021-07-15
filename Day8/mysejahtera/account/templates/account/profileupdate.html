@@ -1,0 +1,20 @@
+{% extends 'checkin/base.html' %}
+{% block title %} Edit Profile / MySejahtera{% endblock %}
+{% block content %}
+
+<form method="POST" , enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset class="form-group">
+    <h4 class="border-bottom mb-4">Edit Profile</h4>
+    <div class="row text-dark">
+      <div class="col-6">
+        {{form.as_p}}
+      </div>
+    </div>
+  </fieldset>
+  <div class="from-group">
+    <button class="btn btn-primary" type="submit">Save Changes</button>
+  </div>
+</form>
+
+{% endblock content %}

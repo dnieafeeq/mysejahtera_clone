@@ -1,0 +1,75 @@
+{% extends 'checkin/base.html' %}
+{% block title %} {{user.profile.full_name}} / MySejahtera{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="col-sm-2">
+        <div class="media">
+            <img style="width: 150px; max-height: 150px;" class="rounded-circle mb-2" src="{{user.profile.image.url}}"
+                alt="Generic placeholder image" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 pl-4">
+            
+        </div>
+        <div class="col-sm-6 text-right">
+            <div style="margin-left: auto; margin-right:auto">
+                <a class="btn btn-outline-primary mb-4 mr-3 " href="{% url 'profileupdate' %}">
+                    Edit profile
+                </a>
+            </div>
+        </div>
+        <div class="container pb-4 pl-4">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="text-muted">{{user.profile.full_name}}</h2>
+                    <div class="form-group">
+                        <label class="">No NRIC</label>
+                        <input id="name" type="text" class="form-control form-control-sm" value="{{ user.profile.nric }}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Mobile No</label>
+                        <input id="name" type="text" class="form-control form-control-sm" value="{{ user.profile.phone_no }}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label class="">State</label>
+                        <input id="name" type="text" class="form-control form-control-sm" value="{{ user.profile.state }}" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %} <div class="card">
+        {% for tweet in object_list %}
+        {% if tweet.author == user %}
+        <div class="card-body">
+            <a href="{% url 'tweetdetail' tweet.id %}">
+                <img style="max-width: 50px; max-height: 50px;" m class="rounded-circle ccount-img img-fluid mr-2"
+                    src="{{tweet.author.profile.image.url}}" alt="IMAGE">
+                <a class="text-none" href="{% url 'profile' %}">
+                    <span class="text-white">{{tweet.author.profile.name}}</span>
+                    @{{tweet.author}}
+                </a>
+            </a>
+            <hr class="my-4" style="background-color:#425369">
+            <h5 class="card-text text-white">{{tweet.text}}</h5>
+            <div class="row">
+                <div class="col-8">
+                    <p style="color:rgb(173, 173, 173)">{{tweet.datetime | date:"g:iA . F j, Y"}}</p>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="{% url 'tweetdetail' tweet.id %}" class="text-primary">Reply</a>
+                    {% if tweet.author == user %}
+                    <a href="{% url 'tweetupdate' tweet.id %}" class="text-success mx-2">Update</a>
+                    <a href="{% url 'tweetdelete' tweet.id %}" class="text-danger">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+            <hr class="mt-4" style="background-color:#425369">
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div> {% endcomment %}
+
+    {% endblock content %}

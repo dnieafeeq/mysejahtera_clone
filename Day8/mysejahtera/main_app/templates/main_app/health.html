@@ -1,0 +1,83 @@
+{% extends 'checkin/base.html' %} {% block title %} Health Info / MySejahtera
+CheckIns {% endblock %} {% block content%}
+<div class="container">
+    <h1 class="text-primary">My Health Information</h1>
+    <div class="row my-4">
+        <div class="col-auto">
+            <!-- <a class="btn btn-primary" href="#">Check-In</a> -->
+            <a href="{% url 'healthupdate'%}" class="btn btn-primary">Update My Health Status</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p>1. Are you exhibiting 2 or more symptoms as lited below?
+                    </p>
+                    <ul>
+                        <li>Fever</li>
+                        <li>Chills</li>
+                        <li>Shivering</li>
+                        <li>Body ache</li>
+                        <li>Headache</li>
+                        <li>Sore throat</li>
+                        <li>Nausea or vomiting</li>
+                        <li>Diarrhea</li>
+                        <li>Fatigue</li>
+                        <li>Runny Nose or nasal congestion</li>
+                    </ul>
+                    <hr class="my-3">
+                    <p>Status : {{user.healthinfo.question1}}</p>
+                </div>
+            </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p>2. Besides the above, are you exhibiting any of the symptoms as lited below?
+                    </p>
+                    <ul>
+                        <li>Cough</li>
+                        <li>Difficulty breathing</li>
+                        <li>Loss of smell</li>
+                        <li>Loss of taste</li>
+                    </ul>
+                    <hr class="my-3">
+                    <p>Status : {{user.healthinfo.question2}}</p>
+                </div>
+            </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p>3. Have you attended any event / areas associated with known COVID-19 cluster?
+                    </p>
+                    <hr class="my-3">
+                    <p>Status : {{user.healthinfo.question3}}</p>
+                </div>
+            </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p>4. Have you travlled to any country ouside Malaysia within 14 days before onset of symptoms?
+                    </p>
+                    <hr class="my-3">
+                    <p>Status : {{user.healthinfo.question4}}</p>
+                </div>
+            </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p>5. Have you had close contact to confirmed or suspected case of COVID-19 within 14 days before onset of illness?
+                    </p>
+                    <hr class="my-3">
+                    <p>Status : {{user.healthinfo.question5}}</p>
+                </div>
+            </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p>6. Are you a MOH COVID-19 volunteer in the last 14 days?
+                    </p>
+                    <hr class="my-3">
+                    <p>Status : {{user.healthinfo.question6}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

@@ -1,0 +1,14 @@
+{% extends 'checkin/base.html' %} {% block content %}
+<div class="container">
+  <h1 class="text-primary">Vaccine Appointment</h1>
+  <form method="POST" class="col-12 col-md-6 no-padding pr-3 pr-md-0">
+    {% csrf_token %}
+
+    <h4>Book Your Vaccine Date Now!</h4>
+    <fieldset class="form-group">{{ vform.as_p }}</fieldset>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,86 @@
+{% extends 'checkin/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-primary">QR Code Location</h1>
+    <div class="row my-4">
+        <div class="col-auto">
+            <!-- <a class="btn btn-primary" href="#">Check-In</a> -->
+            <a href="{% url 'qrcreate' %}" class="btn btn-primary">Create QR Location</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            {% for qr in qrcode %}
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">
+                        {{qr.name}}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- <p>{{qr.id}}</p> -->
+                            <p>{{qr.author}}</p>
+                            <p>{{qr.address}}</p>
+                            <p>{{qr.city}}</p>
+                            <p>{{qr.state}}</p>
+
+
+                            <!-- <a class="btn btn-sm btn-info ml-2" style="font-size: 14px"
+                        href="#">Update</a> -->
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <img src={{qr.qr_code.url}} width="150">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+
+        <!-- <div class="full-width">
+            <div class="col-6 no-padding">
+                <h6 style="position: absolute; bottom: 0; right: 0" class="text-white mb-3">
+                    {{ page_obj.start_index }} - {{ page_obj.end_index }} of
+                    {{ paginator.count }}
+                </h6>
+            </div>
+        </div> -->
+
+
+
+        <div class="justify-content-center">
+            {% if is_paginated %}
+            {% if page_obj.has_previous %}
+            <a class="btn btn-sm btn-outline-secondary mb-4 mr-2" href="?page=1">First</a>
+            <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
+                href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <a class="btn btn-sm btn-info mb-4 mr-2" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a
+                class="btn btn-sm btn-secondary mb-4 mr-2" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <a class="btn btn-sm btn-secondary mb-4 mr-2" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-sm btn-secondary mb-4 mr-2" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+                {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,89 @@
+{%extends 'checkin/base.html'%}
+{% block title %} Home / MySejahtera CheckIns {% endblock %}
+{%block content%}
+<div class="container">
+    <h1 class="text-primary">Welcome to MySejahtera CheckIns</h1>
+    <div class="row my-4">
+        <div class="col-auto">
+            <a class="btn btn-primary" href="{% url 'location' %}">Check-In</a>
+        </div>
+    </div>
+    <div class="row">
+
+
+        <div class="col-md-8">
+
+            {% if user.is_staff == True %}
+            <div class="jumbotron py-3">
+                <div class="row">
+                    <div class="col-8">
+                        <h3>Hello<span class="text-caps"> {{user.username}}</span> </h3>
+                        <p class="lead mb-0">Any Update on Covid-19 cases?
+                        </p>
+                    </div>
+                    <div class="col-4 text-right">
+                        <a class="btn btn-sm btn-primary" href="{% url 'create' %}">
+                            Add New Post
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+            {% endif %}
+
+            <h4>Things to know</h4>
+
+            {% for post in posts %}
+
+            <div class="card mb-2">
+                <div class="card-header pb-0">
+                    <div class="row mb-0">
+                        <div class="col-6">
+                            <h4 class="text-muted"> COVID-19 Update</h4>
+                        </div>
+                        <div class="col-6 text-right">
+                            <p>{{post.date_posted}} - {{post.author}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4>{{post.text}}</h4>
+                    <!-- <p class="card-text">{{post.text}}</p> -->
+
+                    {% if user.is_staff == True %}
+                    <a class="btn btn-sm btn-info ml-2" style="font-size: 14px"
+                        href="{% url 'post-update' post.id %}">Update</a>
+                    <a class="btn btn-sm btn-danger ml-2" style="font-size: 14px"
+                        href="{% url 'post-delete' post.id %}">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h4 class="mr-4">History</h4>
+                    <!-- <p>{{post.date_posted}}</p> -->
+                    <a href="{% url 'location' %}">
+                        Add New Location
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% for loc in location %}
+                    <!-- <h5 class="card-title">{{post.text}}</h5> -->
+                    <p>{{loc.city }} - {{loc.author }} </p>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{%endblock content%}
